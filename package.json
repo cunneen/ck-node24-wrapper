@@ -24,13 +24,12 @@
   },
   "license": "MIT",
   "name": "ck-node24-wrapper",
-  "private": "false",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cunneen/ck-node24-wrapper.git"
+    "url": "git+https://github.com/cunneen/ck-node24-wrapper.git"
   },
   "scripts": {
     "build": "dotenvx run tsup -- --experimental-dts --publicDir --format esm",
