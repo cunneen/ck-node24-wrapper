@@ -216,5 +216,6 @@ Temporary Items
 /.commitlintrc.cjs
 /test/
 /src/
-
+/example/
+/.husky/
 
