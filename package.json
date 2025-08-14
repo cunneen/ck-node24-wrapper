@@ -36,6 +36,7 @@
     "clean": "rm -rf node_modules dist",
     "commitlint": "commitlint --edit",
     "prepare": "node ./dist/installer/installChilkat.js ; husky",
+    "preinstall": "node ./dist/installer/installChilkat.js",
     "prerelease": "npm run build",
     "release": "dotenvx run release-it -- -i ",
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
