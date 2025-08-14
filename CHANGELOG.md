@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.2 - 2025-08-14
+
+[1.0.1...1.0.2](../../compare/1.0.1...1.0.2)
+
+### :bug: Bug fixes
+
+- :bug: use 'bin' in package.json [<sup>(46d26a1)</sup>][46d26a1]
+
+<!-- LINKS -->
+[46d26a1]:../../commit/46d26a1cdd4c2984fc8029062d919d206464b53b
+
 ## 1.0.1 - 2025-08-14
 
 [1.0.0...1.0.1](../../compare/1.0.0...1.0.1)
