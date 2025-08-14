@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // an install script to install the appropriate @chilkat/ck-node24-* module
 import os from 'os';
 import { execa } from 'execa';

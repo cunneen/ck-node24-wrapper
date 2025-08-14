@@ -1,6 +1,9 @@
 {
   "author": "Mike Cunneen",
   "description": "A wrapper NPM module to abstract os-specific dependencies on @chilkat/ck-node24-* modules",
+  "bin":{
+    "ck-install": "./dist/installer/installChilkat.js"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
@@ -35,8 +38,7 @@
     "build": "dotenvx run tsup -- --experimental-dts --publicDir --format esm",
     "clean": "rm -rf node_modules dist",
     "commitlint": "commitlint --edit",
-    "prepare": "node ./dist/installer/installChilkat.js ; husky",
-    "preinstall": "node ./dist/installer/installChilkat.js",
+    "prepare": "ck-install ; husky",
     "prerelease": "npm run build",
     "release": "dotenvx run release-it -- -i ",
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",

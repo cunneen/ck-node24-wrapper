@@ -48,6 +48,7 @@ A Wrapper NPM module to abstract os-specific dependencies on the [NodeJS Chilkat
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
+      <a href="#issues-when-updating-other-packages">Issues When Updating Other Packages</a>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -125,6 +126,14 @@ Install this module into your project directory:
 npm install ck-node24-wrapper --save
 ```
 
+Add `ck-install` as a `"prepare"` script in your `package.json`:
+
+```json
+"scripts": {
+  "prepare": "ck-install"
+}
+```
+
 Then import the module in your code:
 
 ```js
@@ -154,6 +163,55 @@ if (success) {
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Issues When Updating Other Packages
+
+When you use NPM (and probably yarn, pnpm etc) to add or update your dependencies, the package manager unfortunately will automatically remove your os-dependent installation of the chilkat library.
+
+If that has happened, then when you run your program you'll see an error like this:
+
+```
+Error: Cannot find module '@chilkat/ck-node24-mac-universal'
+```
+
+This happens because this wrapper installs the appropriate library using the `--no-save` flag, which means that the package manager (NPM) will not add the library to your `package.json` file. Then, when the package manager performs another update, it notices the installed library that isn't in the `package.json` file, and removes it.
+
+This wrapper avoids updating your `package.json` file, and does not make the assumption that your deployment OS environment is the same as your development OS environment (or even that you are using NPM to manage your other packages).
+
+For example, you might be:
+
+* Authoring a NodeJS package that uses this wrapper. In that case, you want the consumers of your package to download the appropriate chilkat library for *their* environment. So
+  you don't want the os-specific chilkat library in the `dependencies` section of your `package.json`.
+* Bundling a server application using webpack, parcel, tar, zip or some other packaging tool. The target environment might be different from your development environment, so
+  we want the chilkat installer to run (via `npm ci`) in the target environment. For example, if your development machine is MacOS and your target machine is Linux, we
+  don't want to include the @chilkat/ck-node24-mac-universal library and omit the appropriate linux one.
+
+#### Solutions
+
+##### Solution 1: Manually use the `prepare` script
+
+If you've added a `"prepare"` script as per the [Getting Started](#getting-started) section, then you can rerun the `ck-install` script manually:
+
+```sh
+npm run prepare
+```
+
+##### Solution 2: Use the `--save-optional` flag
+
+You can explicitly add the os-specific dependency for use on your own machine via the `--save-optional` flag:
+
+```sh
+npm install @chilkat/ck-node24-mac-universal --save-optional
+```
+
+That will add it to the `optionalDependencies` section of your `package.json` file, which will prevent the package manager from removing it. This will allow NPM to proceed if installation fails. You should note, however, that consumers of your package will be attempting to install that os-specific chilkat library without necessarily using it.
+
+See the [optionalDependencies section](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#optionaldependencies) of the [NPM website][NPM-URL] for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+## Roadmap
 
 See the [open issues](https://github.com/cunneen/ck-node24-wrapper/issues) for a full list of proposed features (and known issues).
 
