@@ -38,7 +38,7 @@
     "build": "dotenvx run tsup -- --experimental-dts --publicDir --format esm",
     "clean": "rm -rf node_modules dist",
     "commitlint": "commitlint --edit",
-    "prepare": "ck-install ; husky",
+    "prepare": "./dist/installer/installChilkat.js ; husky",
     "prerelease": "npm run build",
     "release": "dotenvx run release-it -- -i ",
     "release-changelog": "git-cliff --unreleased --prepend CHANGELOG.md --tag ",
