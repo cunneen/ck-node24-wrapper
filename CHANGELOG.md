@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.3 - 2025-08-21
+
+[1.0.2...1.0.3](../../compare/1.0.2...1.0.3)
+
+### :bug: Bug fixes
+
+- 🔧 package.json : use full pack to installChilkat.js [<sup>(758a699)</sup>][758a699]
+
+<!-- LINKS -->
+[758a699]:../../commit/758a699b5843cd24fe348500fd9d8b305df63c3d
+
 ## 1.0.2 - 2025-08-14
 
 [1.0.1...1.0.2](../../compare/1.0.1...1.0.2)
